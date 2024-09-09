@@ -1,0 +1,7 @@
+- name: Run filebeat Command
+  ansible.builtin.shell: ansible-pull -i localhost, -U https://github.com/raghudevopsb75/infra-ansible elk.yml -e elk_component=filebeat
+
+
+
+
+
