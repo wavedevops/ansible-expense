@@ -3,39 +3,39 @@
     src: elastic.repo
     dest: /etc/yum.repos.d/elastic.repo
 
-#- name: Install Filebeat
-#  ansible.builtin.dnf:
-#    name: filebeat
-#    state: installed
-#
+- name: Install Filebeat
+  ansible.builtin.dnf:
+    name: filebeat
+    state: installed
+
 #- name: Copy Filebeat Configuration
 #  ansible.builtin.template:
 #    src: filebeat.yml
 #    dest: /etc/filebeat/filebeat.yml
-#
-#- name: Start Filebeat
-#  ansible.builtin.systemd:
-#    name: filebeat
-#    state: restarted
-#    enabled: yes
 
-- name: Remove Filebeat
-  ansible.builtin.dnf:
-    name: filebeat
-    state: absent
-
-- name: Remove Filebeat configuration file
-  ansible.builtin.file:
-    path: /etc/filebeat/filebeat.yml
-    state: absent
-
-- name: Remove Elastic Yum repo file
-  ansible.builtin.file:
-    path: /etc/yum.repos.d/elastic.repo
-    state: absent
-
-- name: Stop and disable Filebeat service
+- name: Start Filebeat
   ansible.builtin.systemd:
     name: filebeat
-    state: stopped
-    enabled: no
+    state: restarted
+    enabled: yes
+
+#- name: Remove Filebeat
+#  ansible.builtin.dnf:
+#    name: filebeat
+#    state: absent
+#
+#- name: Remove Filebeat configuration file
+#  ansible.builtin.file:
+#    path: /etc/filebeat/filebeat.yml
+#    state: absent
+#
+#- name: Remove Elastic Yum repo file
+#  ansible.builtin.file:
+#    path: /etc/yum.repos.d/elastic.repo
+#    state: absent
+#
+#- name: Stop and disable Filebeat service
+#  ansible.builtin.systemd:
+#    name: filebeat
+#    state: stopped
+#    enabled: no
